@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """ State Module for HBNB project """
 from models.base_model import BaseModel, Base
-from models.engine.file_storage import all
+from models import storage
 from sqlalchemy import Column, String
 from sqlalchemy.orm import relationship
 
@@ -16,5 +16,5 @@ class State(BaseModel, Base):
     @property
     def cities(self):
         """ getter - to get all state's cities """
-        cities_found = [item for item in all(self).items()]
+        cities_found = [item for item in storage.all(self).items()]
         return cities_found
