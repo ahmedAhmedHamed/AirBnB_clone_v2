@@ -59,5 +59,3 @@ def process_string(raw_string):
 def replace_underscores(sentence=""):
     """replaces all '_' with a space ' '"""
     return sentence.replace('_', ' ')
-
-print(datetime.now())
