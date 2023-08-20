@@ -11,6 +11,8 @@ from models.city import City
 from models.amenity import Amenity
 from models.review import Review
 
+from utilities.input_do_create import to_kwargs
+
 
 class HBNBCommand(cmd.Cmd):
     """ Contains the functionality for the HBNB console"""
@@ -114,14 +116,22 @@ class HBNBCommand(cmd.Cmd):
         pass
 
     def do_create(self, args):
-        """ Create an object of any class"""
-        if not args:
+        """ Create an object of any class
+        to test: create BaseModel name="one"
+        """
+        args = args.split(" ")
+        if not args or not args[0]:
             print("** class name missing **")
             return
-        elif args not in HBNBCommand.classes:
+        elif args[0] not in HBNBCommand.classes:
             print("** class doesn't exist **")
             return
-        new_instance = HBNBCommand.classes[args]()
+        if len(args) == 1:
+            new_instance = HBNBCommand.classes[args[0]]()
+        else:
+            kwargs = to_kwargs(args[1:])
+            kwargs['flagged_as_new'] = "NEW!"
+            new_instance = HBNBCommand.classes[args[0]](**kwargs)
         storage.save()
         print(new_instance.id)
         storage.save()
