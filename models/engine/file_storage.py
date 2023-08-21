@@ -13,7 +13,6 @@ class FileStorage:
         if cls is None:
             return FileStorage.__objects
         required_objects = {}
-        print(cls)
         for key, value in FileStorage.__objects.items():
             if key.startswith(cls.__name__):
                 required_objects[key] = value

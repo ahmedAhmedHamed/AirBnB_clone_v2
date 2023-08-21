@@ -217,6 +217,7 @@ class HBNBCommand(cmd.Cmd):
                 print("** class doesn't exist **")
                 return
             output = storage.all(HBNBCommand.classes[args])
+            print(output)
             for key, value in output.items():
                 print_list.append(output[key].__str__())
             

@@ -4,8 +4,12 @@ import uuid
 from datetime import datetime
 from sqlalchemy import Column, String, DateTime
 from sqlalchemy.ext.declarative import declarative_base
+import os
 
-Base = declarative_base()
+if os.environ.get('HBNB_TYPE_STORAGE') != "db":
+    Base = object
+else:
+    Base = declarative_base()
 
 
 class BaseModel:
