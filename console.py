@@ -132,9 +132,9 @@ class HBNBCommand(cmd.Cmd):
             kwargs = to_kwargs(args[1:])
             kwargs['flagged_as_new'] = "NEW!"
             new_instance = HBNBCommand.classes[args[0]](**kwargs)
-        storage.save()
+        new_instance.save()
         print(new_instance.id)
-        storage.save()
+        new_instance.save()
 
     def help_create(self):
         """ Help information for the create method """
@@ -216,12 +216,11 @@ class HBNBCommand(cmd.Cmd):
             if args not in HBNBCommand.classes:
                 print("** class doesn't exist **")
                 return
-            output = storage.all(args)
+            print_list = storage.all(args)
         else:
             for k, v in storage.all():
                 print_list.append(str(v))
 
-        print(print_list)
 
     def help_all(self):
         """ Help information for the all command """

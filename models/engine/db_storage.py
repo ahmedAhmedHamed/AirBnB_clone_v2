@@ -49,9 +49,10 @@ class DBStorage:
             if type(cls) == str:
                 cls = eval(cls)
             results_list = self.__session.query(cls).all()
-            print(results_list)
-            for result in results_list:
-                results_dict[result.key] = result.value
+
+        for result in results_list:
+            print(result)
+            results_dict[f"{type(result).__name__}.{result.id}"] = result
 
         return results_dict
 
@@ -81,7 +82,6 @@ class DBStorage:
         Session = scoped_session(Session)
         self.__session = Session()
         self.__session
-        print("reloaded")
 
     def close(self):
         """Closes the SQLAlchemy session."""
