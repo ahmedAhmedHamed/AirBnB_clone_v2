@@ -3,7 +3,10 @@
 from models.base_model import BaseModel, Base
 from sqlalchemy import Column, String, Integer, Float, ForeignKey
 from sqlalchemy.orm import relationship
+from models import storage
+from models.review import Review
 
+import os
 
 class Place(BaseModel, Base):
     """ A place to stay """
@@ -20,4 +23,13 @@ class Place(BaseModel, Base):
     longitude = Column(Float(), nullable=True)
     user = relationship('User', back_populates='places')
     cities = relationship('City', back_populates='places')
+    reviews_r = relationship('Review', back_populates='place')
     amenity_ids = []
+
+    if os.getenv("HBNB_TYPE_STORAGE") != "db":
+        @property
+        def reviews(self):
+            """ getter - to get all places's reviews """
+            review_list = [item for item in storage.all(Review).values()
+                            if item.place_id == self.id]
+            return review_list
