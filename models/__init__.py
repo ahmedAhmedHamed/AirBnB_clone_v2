@@ -2,6 +2,8 @@
 """This module instantiates an object of class FileStorage"""
 import os
 
+__all__ = ['State', 'City', 'User', 'Place', 'Amenity', 'Review']
+
 STORAGE = os.environ.get('HBNB_TYPE_STORAGE')
 
 if STORAGE == 'db':
