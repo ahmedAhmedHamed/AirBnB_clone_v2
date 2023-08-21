@@ -5,7 +5,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, scoped_session
 
-Base = declarative_base()
+from models.base_model import Base
 
 
 class DBStorage:
@@ -80,6 +80,8 @@ class DBStorage:
         Session = sessionmaker(bind=self.__engine, expire_on_commit=False)
         Session = scoped_session(Session)
         self.__session = Session()
+        self.__session
+        print("reloaded")
 
     def close(self):
         """Closes the SQLAlchemy session."""
