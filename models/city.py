@@ -14,4 +14,4 @@ class City(BaseModel, Base):
                                  onupdate='CASCADE'),
                       nullable=False)
     name = Column(String(128), nullable=False)
-    state = relationship('State', back_populates='cities')
+    state = relationship('State', back_populates='cities_r')
