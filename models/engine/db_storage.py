@@ -19,7 +19,7 @@ class DBStorage:
         DB_PASS = os.environ.get('HBNB_MYSQL_PWD')
         DB_HOST = os.environ.get('HBNB_MYSQL_HOST')
         DB_NAME = os.environ.get('HBNB_MYSQL_DB')
-        ENV = os.environ.get('HBNB_ENV')
+        HBNB_ENV = os.environ.get('HBNB_ENV')
 
         self.__engine = create_engine(
             'mysql+mysqldb://{}:{}@localhost/{}'.format(DB_USER,
@@ -27,13 +27,13 @@ class DBStorage:
                                                         DB_NAME),
             pool_pre_ping=True)
 
-        if ENV == 'test':
+        if HBNB_ENV == 'test':
             Base.metadata.dropall(self.__engine)
 
     def all(self, cls=None):
         """ Returns a dictionary of models currently in storage """
         results_dict = {}
-        if cls in None:
+        if cls is None:
             from models.user import User
             from models.state import State
             from models.city import City
@@ -69,6 +69,12 @@ class DBStorage:
 
     def reload(self):
         """ Loads objects from the database """
+        from models.user import User
+        from models.state import State
+        from models.city import City
+        from models.amenity import Amenity
+        from models.place import Place
+        from models.review import Review
         Base.metadata.create_all(self.__engine)
         Session = sessionmaker(bind=self.__engine, expire_on_commit=False)
-        self.__session = Session()
+        self.__session = scoped_session(Session)
