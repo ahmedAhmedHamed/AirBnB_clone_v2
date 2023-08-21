@@ -221,7 +221,7 @@ class HBNBCommand(cmd.Cmd):
             for key, value in output.items():
                 print_list.append(output[key].__str__())
             
-            print(print_list)
+            print(f"[{', '.join(print_list)}]")
         else:
             for k, v in storage.all():
                 print_list.append(str(v))

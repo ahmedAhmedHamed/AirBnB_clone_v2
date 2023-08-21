@@ -51,7 +51,6 @@ class DBStorage:
             results_list = self.__session.query(cls).all()
 
         for result in results_list:
-            print(result)
             results_dict[f"{type(result).__name__}.{result.id}"] = result
 
         return results_dict
