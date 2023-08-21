@@ -31,11 +31,15 @@ class BaseModel:
             self.__dict__.update(kwargs)
             storage.new(self)
         else:
-            kwargs['updated_at'] = datetime.strptime(kwargs['updated_at'],
-                                                     '%Y-%m-%dT%H:%M:%S.%f')
-            kwargs['created_at'] = datetime.strptime(kwargs['created_at'],
-                                                     '%Y-%m-%dT%H:%M:%S.%f')
-            del kwargs['__class__']
+            if 'id' not in kwargs:
+                kwargs['id'] = str(uuid.uuid4())
+            if 'updated_at' not in kwargs:
+                kwargs['updated_at'] = datetime.now()
+            if 'created_at' not in kwargs:
+                kwargs['created_at'] = datetime.now()
+
+            if '__class__' in kwargs:
+                del kwargs['__class__']
             self.__dict__.update(kwargs)
 
             for key, value in kwargs.items():

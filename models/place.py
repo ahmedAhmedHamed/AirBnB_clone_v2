@@ -3,9 +3,6 @@
 from models.base_model import BaseModel, Base
 from sqlalchemy import Column, String, Integer, Float, ForeignKey, Table
 from sqlalchemy.orm import relationship
-from models import storage
-from models.review import Review
-from models.amenity import Amenity
 
 import os
 
@@ -32,14 +29,17 @@ class Place(BaseModel, Base):
     longitude = Column(Float(), nullable=True)
     user = relationship('User', back_populates='places')
     cities = relationship('City', back_populates='places')
-    reviews_r = relationship('Review', back_populates='place')
-    amenities_r = relationship('Amenity', secondary='place_amenity', viewonly=False, back_populates='place_amenities')
+    reviews = relationship('Review', back_populates='place', cascade='all, delete, save-update')
+    amenities = relationship('Amenity', secondary='place_amenity', viewonly=False, back_populates='place_amenities')
     amenity_ids = []
 
 
     if os.getenv("HBNB_TYPE_STORAGE") != "db":
         @property
         def reviews(self):
+            from models import storage
+            from models.review import Review
+
             """ getter - to get all places's reviews """
             review_list = [item for item in storage.all(Review).values()
                             if item.place_id == self.id]
@@ -51,5 +51,6 @@ class Place(BaseModel, Base):
 
         @amenities.setter
         def amenities(self, value):
+            from models.amenity import Amenity
             if type(value) is Amenity:
                 self.amenity_ids.append(value)

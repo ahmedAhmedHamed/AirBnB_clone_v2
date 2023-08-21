@@ -2,7 +2,12 @@
 """This module instantiates an object of class FileStorage"""
 import os
 
-__all__ = ['State', 'City', 'User', 'Place', 'Amenity', 'Review']
+from .state import State
+from .city import City
+from .user import User
+from .review import Review
+from .place import Place
+from .amenity import Amenity
 
 STORAGE = os.environ.get('HBNB_TYPE_STORAGE')
 
