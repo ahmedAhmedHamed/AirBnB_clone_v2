@@ -2,11 +2,12 @@
 """ State Module for HBNB project """
 from models.base_model import BaseModel, Base
 from models import storage
+from models.city import City
 from sqlalchemy import Column, String
 from sqlalchemy.orm import relationship
 
 
-class State(BaseModel, Base):
+class State(BaseModel):
     """ State class """
     __tablename__ = "states"
     name = Column(String(128), nullable=False)
@@ -16,5 +17,5 @@ class State(BaseModel, Base):
     @property
     def cities(self):
         """ getter - to get all state's cities """
-        cities_found = [item for item in storage.all(self).items()]
+        cities_found = [item for item in storage.all(City).values() if item.state_id == self.id]
         return cities_found
