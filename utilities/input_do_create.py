@@ -24,7 +24,7 @@ def to_kwargs(args):
         processed_value = process_value(raw_value)
         if processed_value is None:
             continue
-        if type(process_value) is str:
+        if type(processed_value) is str:
             processed_value = processed_value.replace('"', '')
         kwargs[key] = processed_value
     return kwargs

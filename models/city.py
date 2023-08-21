@@ -15,3 +15,4 @@ class City(BaseModel, Base):
                       nullable=False)
     name = Column(String(128), nullable=False)
     state = relationship('State', back_populates='cities_r')
+    places = relationship('Place', back_populates='cities', cascade='all, delete, save-update')
