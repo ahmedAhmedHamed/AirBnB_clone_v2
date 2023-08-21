@@ -225,9 +225,7 @@ class HBNBCommand(cmd.Cmd):
             output = storage.all()
             for key, value in output.items():
                 print_list.append(output[key].__str__())
-
             print(f"[{', '.join(print_list)}]")
-
 
     def help_all(self):
         """ Help information for the all command """
