@@ -46,9 +46,6 @@ class DBStorage:
                 query_list = self.__session.query(model).all()
                 results_list = results_list + query_list
         else:
-            print()# TODO DELETE THIS
-            print(cls)
-
             if type(cls) == str:
                 cls = eval(cls)
             results_list = self.__session.query(cls).all()
@@ -81,4 +78,9 @@ class DBStorage:
         from models.review import Review
         Base.metadata.create_all(self.__engine)
         Session = sessionmaker(bind=self.__engine, expire_on_commit=False)
-        self.__session = scoped_session(Session)
+        Session = scoped_session(Session)
+        self.__session = Session()
+
+    def close(self):
+        """Closes the SQLAlchemy session."""
+        self.__session.close()
