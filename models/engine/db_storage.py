@@ -33,22 +33,26 @@ class DBStorage:
     def all(self, cls=None):
         """ Returns a dictionary of models currently in storage """
         results_dict = {}
+        from models.user import User
+        from models.state import State
+        from models.city import City
+        from models.amenity import Amenity
+        from models.place import Place
+        from models.review import Review
         if cls is None:
-            from models.user import User
-            from models.state import State
-            from models.city import City
-            from models.amenity import Amenity
-            from models.place import Place
-            from models.review import Review
-
             models = [User, State, City, Amenity, Place, Review]
             results_list = []
             for model in models:
                 query_list = self.__session.query(model).all()
                 results_list = results_list + query_list
         else:
-            results_list = self.__session.query(cls).all()
+            print()# TODO DELETE THIS
+            print(cls)
 
+            if type(cls) == str:
+                cls = eval(cls)
+            results_list = self.__session.query(cls).all()
+            print(results_list)
             for result in results_list:
                 results_dict[result.key] = result.value
 
