@@ -20,5 +20,6 @@ class State(BaseModel, Base):
         @property
         def cities(self):
             """ getter - to get all state's cities """
-            cities_found = [item for item in storage.all(City).values() if item.state_id == self.id]
+            cities_found = [item for item in storage.all(City).values()
+                            if item.state_id == self.id]
             return cities_found
