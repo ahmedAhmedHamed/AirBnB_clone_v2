@@ -5,6 +5,10 @@ import datetime
 
 
 def do_pack():
+    """
+    packs web_static into versions folder
+    Return: the path of the saved targz
+    """
     if not os.path.exists('versions'):
         os.mkdir('versions')
     time = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
