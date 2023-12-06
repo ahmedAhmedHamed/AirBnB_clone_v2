@@ -20,4 +20,3 @@ echo 'server {
         alias /data/web_static/current/;
     }
 }' > /etc/nginx/conf.d/prepare_your_web_servers.conf
-
