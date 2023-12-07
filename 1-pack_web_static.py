@@ -10,7 +10,7 @@ def do_pack():
     Return: the path of the saved targz
     """
     time = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
-    packpath = './versions/web_static_' + str(time)
+    packpath = './versions/web_static_' + str(time) + '.tgz'
     print('Packing web_static to ' + packpath)
     if not os.path.exists('versions'):
         os.mkdir('versions')
