@@ -14,6 +14,8 @@ def do_pack():
     print('Packing web_static to ' + packpath)
     if not os.path.exists('versions'):
         os.mkdir('versions')
+    if not os.path.exists('web_static'):
+        return None
     try:
         with tarfile.open(packpath, "w:gz") as tar:
             tar.add('web_static', arcname=os.path.basename('static'))
