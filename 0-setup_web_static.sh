@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# this server sets up a webserver using nginx.
+# this script sets up a webserver using nginx.
 mkdir -p /data/web_static/releases/
 mkdir -p /data/web_static/shared/
 mkdir -p /data/web_static/releases/test/
@@ -20,3 +20,4 @@ echo 'server {
         alias /data/web_static/current/;
     }
 }' > /etc/nginx/conf.d/prepare_your_web_servers.conf
+service restart nginx
