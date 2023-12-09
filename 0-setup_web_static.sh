@@ -14,7 +14,7 @@ echo '<html>
   </body>
 </html>' > /data/web_static/releases/test/index.html
 ln -sf /data/web_static/releases/test/ /data/web_static/current
-# chown -R ubuntu:ubuntu /data/
+chown -R ubuntu:ubuntu /data/
 touch /etc/nginx/conf.d/prepare_your_web_servers.conf
 echo 'server {
     listen 80;
