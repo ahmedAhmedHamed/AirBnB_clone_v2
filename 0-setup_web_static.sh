@@ -21,3 +21,4 @@ echo 'server {
     }
 }' > /etc/nginx/conf.d/prepare_your_web_servers.conf
 service restart nginx
+exit 0
