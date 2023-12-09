@@ -2,6 +2,7 @@
 import os
 import tarfile
 import datetime
+from fabric.api import local
 
 
 def do_pack():
@@ -13,12 +14,6 @@ def do_pack():
         return None
     time = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
     packpath = './versions/web_static_' + str(time) + '.tgz'
-    if not os.path.exists('versions'):
-        os.mkdir('versions')
-    try:
-        with tarfile.open(packpath, "w:gz") as tar:
-            tar.add('web_static', arcname=os.path.basename('static'))
-    except:
-        return None
-    print('Packing web_static to ' + packpath)
+    local("mkdir -p versions")
+    local("tar -czvf {} web_static".format(packpath))
     return packpath
