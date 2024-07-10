@@ -22,8 +22,8 @@ def do_pack():
 
 def do_deploy():
     """
-    packs web_static into versions folder
-    Return: the path of the saved targz
+    deploys static files to the webservers
+    Return: True on success False otherwise
     """
     path = do_pack()
     upload_path = f'/tmp/{path}'
@@ -37,5 +37,3 @@ def do_deploy():
     run("rm /data/web_static/current")
     run(f"ln -sf {decompression_path} /data/web_static/current")
     return True
-
-
