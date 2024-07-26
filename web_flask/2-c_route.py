@@ -25,6 +25,7 @@ def c_route(text):
     """
     the / route that prints c + variable !
     """
+    text = text.replace("_", ' ')
     return f"C {text}"
 
 if __name__ == '__main__':
