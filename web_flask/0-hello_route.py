@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-simply a hello_world!
+houses the hello route solution
 """
 from flask import Flask
 
@@ -14,4 +14,7 @@ def hello_world():
     return "Hello HBNB!"
 
 if __name__ == '__main__':
+    """
+    this is the main that runs the app
+    """
     app.run(host='0.0.0.0', port='5000', debug=False)
