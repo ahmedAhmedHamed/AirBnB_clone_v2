@@ -27,6 +27,14 @@ def c_route(text):
     """
     return f"C {text}"
 
+@app.route("/python/", defaults={'text': 'is cool'}, strict_slashes=False)
+@app.route("/python/<text>", strict_slashes=False)
+def python_route(text):
+    """
+    the / route that prints c + variable !
+    """
+    return f"Python {text}"
+
 if __name__ == '__main__':
     """
     this is the main that runs the app
