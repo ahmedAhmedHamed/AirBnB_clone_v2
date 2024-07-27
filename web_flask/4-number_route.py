@@ -37,15 +37,12 @@ def python_route(text):
     text = text.replace("_", ' ')
     return f"Python {text}"
 
-@app.route("/number/<n>", strict_slashes=False)
-def number_route(number):
+@app.route("/number/<int:n>", strict_slashes=False)
+def number_route(n):
     """
     display “n is a number” only if n is an integer
     """
-    for digit in number:
-        if not digit.isdigit():
-            abort(404)
-    return f"{number} is a number"
+    return f"{n} is a number"
 
 if __name__ == '__main__':
     """
