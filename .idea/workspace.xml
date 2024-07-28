@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c416e9b4-8858-4096-81b5-c01f47bbc43f" name="Changes" comment="added close to file storage">
-      <change beforePath="$PROJECT_DIR$/web_flask/7-states_list.py" beforeDir="false" afterPath="$PROJECT_DIR$/web_flask/7-states_list.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/place.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/place.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -130,7 +130,7 @@
       <option name="presentableId" value="Default" />
       <updated>1722070811887</updated>
       <workItem from="1722070812898" duration="579000" />
-      <workItem from="1722117092842" duration="9040000" />
+      <workItem from="1722117092842" duration="9143000" />
     </task>
     <task id="LOCAL-00001" summary="added close to file storage">
       <option name="closed" value="true" />
