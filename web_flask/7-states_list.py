@@ -81,7 +81,7 @@ def states_list():
 
 
 @app.teardown_appcontext
-def teardown(e):
+def teardown():
 	storage.close()
 
 
