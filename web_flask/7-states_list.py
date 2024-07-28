@@ -76,7 +76,8 @@ def states_list():
 	"""
 	display “n is a number” only if n is an integer
 	"""
-	states = storage.all(State).values()
+	states = list(storage.all(State).values())
+	states.sort(key=lambda x: x.name)
 	return render_template('7-states_list.html', states=states)
 
 
